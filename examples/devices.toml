@@ -1,0 +1,20 @@
+[devices.windows]
+ssh_host = "windows"
+remote_port = 8765
+token_file = "windows-token.txt"
+expected_device_id = "REPLACE_WITH_DEVICE_ID_FROM_WINDOWS"
+
+# For an already-opened SSH tunnel, replace ssh_host and remote_port with:
+# url = "http://127.0.0.1:18765"
+
+[devices.windows.display_aliases]
+main = "primary"
+
+[devices.mac]
+ssh_host = "mac"
+remote_port = 8765
+token_file = "mac-token.txt"
+expected_device_id = "REPLACE_WITH_DEVICE_ID_FROM_MAC"
+
+[devices.mac.display_aliases]
+main = "primary"

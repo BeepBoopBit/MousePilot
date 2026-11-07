@@ -1,0 +1,38 @@
+name: Bug report
+description: Report a reproducible MousePilot problem using redacted test data.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "For vulnerabilities, follow SECURITY.md. Do not include tokens, private screenshots, profiles, or unredacted logs."
+  - type: input
+    id: version
+    attributes:
+      label: MousePilot version or commit
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Windows or macOS version, controlling OS, Python version, MCP client, monitor layout, and scale.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Use the dedicated test window or synthetic data where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Redacted diagnostics
+      description: Include error codes and relevant operations, without credentials or personal content.

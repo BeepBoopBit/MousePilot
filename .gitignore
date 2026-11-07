@@ -1,0 +1,58 @@
+# Local environments and caches
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Builds and generated verification artifacts
+/dist/
+/build/
+/captures/
+*.spec
+!/scripts/macos.spec
+*.log
+*.log.*
+/target-state.json
+
+# Private device configuration, credentials, and local client settings
+/devices.toml
+/mcp-config.json
+*-token.txt
+/mousepilot-device-id.txt
+/mouse-device-id.txt
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+/audit-requirements.txt
+
+# Local assistant instructions and settings
+AGENTS.md
+AGENTS.override.md
+CLAUDE.md
+CLAUDE.local.md
+CODEX.md
+GEMINI.md
+QWEN.md
+.claude/
+.codex/
+.cursor/
+.windsurf/
+.continue/
+.agents/
+.cursorrules
+.windsurfrules
+.mcp.json

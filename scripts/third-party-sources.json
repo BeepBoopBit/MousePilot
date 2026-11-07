@@ -1,0 +1,8 @@
+{
+  "pystray": {
+    "version": "0.19.5",
+    "url": "https://codeload.github.com/moses-palmer/pystray/tar.gz/refs/tags/v0.19.5",
+    "sha256": "2ab6bd15c14b400c9e8271a82c9de8adc0f1a0cacfc14080bdd4fb42bb88ec92",
+    "filename": "pystray-0.19.5-source.tar.gz"
+  }
+}
