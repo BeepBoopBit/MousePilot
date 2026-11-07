@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mousepilot"
+version = "0.1.0b0"
+description = "Observe and control Windows and macOS desktops through MCP or the command line"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "MousePilot contributors"}]
+keywords = ["mcp", "windows", "macos", "desktop", "automation", "mouse", "keyboard"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS :: MacOS X",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Desktop Environment",
+]
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.20,<2",
+    "Pillow>=11",
+    "pydantic>=2",
+    "pystray>=0.19 ; sys_platform == 'win32'",
+    "pyobjc-framework-Cocoa>=11 ; sys_platform == 'darwin'",
+    "pyobjc-framework-Quartz>=11 ; sys_platform == 'darwin'",
+    "pyobjc-framework-ApplicationServices>=11 ; sys_platform == 'darwin'",
+    "pyobjc-framework-ScreenCaptureKit>=11 ; sys_platform == 'darwin'",
+]
+
+[project.scripts]
+mousepilot = "mousepilot.cli:main"
+mousepilot-server = "mousepilot.server:main"
+
+[dependency-groups]
+dev = [
+    "pip-audit>=2.10.1",
+    "ruff>=0.17.4",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[project.optional-dependencies]
+build = ["pyinstaller>=6; sys_platform == 'win32' or sys_platform == 'darwin'"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mousepilot"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src/mousepilot", "/tests", "/scripts", "/examples", "/docs", "/.github",
+    "/README.md", "/LICENSE", "/THIRD_PARTY_NOTICES.md", "/CONTRIBUTING.md",
+    "/SECURITY.md", "/CODE_OF_CONDUCT.md", "/CHANGELOG.md", "/pyproject.toml",
+    "/uv.lock", "/.gitignore", "/.gitattributes", "/.editorconfig",
+    "/SUPPORT.md", "/dev.sh", "/dev.ps1", "/docs-checks.json", "/third_party", "/assets",
+]
+exclude = ["**/__pycache__/**", "**/*.pyc"]

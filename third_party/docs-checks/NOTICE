@@ -1,0 +1,13 @@
+Documentation check tools
+
+Source: Aixand docs-template, documentation standard 0.1.0.
+Repository: https://github.com/Aixand/templates
+Source commit: 9601a534f34f4e2b06b6b59640163015d0e300c6
+
+Copied files:
+- docs-template/files/scripts/checks/check-docs.py
+- docs-template/files/tests/tooling/checks/docs_test.py
+
+MousePilot changes: add source notices, change the test module name, and apply
+the project code format. These files use Apache-2.0. See LICENSE in this folder.
+MousePilot code keeps its MIT license.

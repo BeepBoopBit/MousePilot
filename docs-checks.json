@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "include": [
+    "README.md",
+    "CONTRIBUTING.md",
+    "SUPPORT.md",
+    "SECURITY.md",
+    "CODE_OF_CONDUCT.md",
+    "CHANGELOG.md",
+    "THIRD_PARTY_NOTICES.md",
+    "docs/**/*.md",
+    "assets/**/*.md"
+  ],
+  "exclude": [],
+  "allow_placeholders": false
+}

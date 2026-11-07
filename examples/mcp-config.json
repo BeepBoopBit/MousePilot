@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "mousepilot-windows": {
+      "command": "/absolute/path/to/mousepilot/.venv/bin/mousepilot",
+      "args": [
+        "--config", "/absolute/path/to/devices.toml",
+        "--device", "windows", "mcp"
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# Place in a trusted project's .codex/config.toml; replace both absolute paths.
+[mcp_servers.mousepilot-windows]
+command = "/absolute/path/to/mousepilot/.venv/bin/mousepilot"
+args = ["--config", "/absolute/path/to/devices.toml", "--device", "windows", "mcp"]
+startup_timeout_sec = 30
+tool_timeout_sec = 30
+
+# Optional second device; tools are namespaced separately.
+[mcp_servers.mousepilot-mac]
+command = "/absolute/path/to/mousepilot/.venv/bin/mousepilot"
+args = ["--config", "/absolute/path/to/devices.toml", "--device", "mac", "mcp"]
+startup_timeout_sec = 30
+tool_timeout_sec = 30
