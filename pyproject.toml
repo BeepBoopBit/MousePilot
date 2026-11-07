@@ -23,7 +23,7 @@ classifiers = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "mcp>=1.20,<2",
+    "mcp>=1.20,<3",
     "Pillow>=11",
     "pydantic>=2",
     "pystray>=0.19 ; sys_platform == 'win32'",
