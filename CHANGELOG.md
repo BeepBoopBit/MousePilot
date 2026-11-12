@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 — 2026-11-13
+
+- Declare all four MCP tool annotation hints explicitly, including behavior-appropriate
+  idempotency and complete control tool annotations.
+- Add regression coverage for annotation completeness across all 24 tools.
+
 ## 0.1.0b0 — Unreleased
 
 Initial public beta.

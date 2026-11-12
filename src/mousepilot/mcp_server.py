@@ -23,8 +23,16 @@ def create_mcp(remote, device_name):
             "after a connection or input/backend error; do not try different coordinates to solve a native input error. Emergency stop: Ctrl+Alt+Shift+F11 on Windows; Ctrl+Option+Shift+F11 on macOS. On macOS use cmd for Command shortcuts; device_info reports required permissions."
         ),
     )
-    read = ToolAnnotations(readOnlyHint=True, destructiveHint=False, openWorldHint=True)
-    write = ToolAnnotations(readOnlyHint=False, destructiveHint=True, openWorldHint=True)
+    read = ToolAnnotations(
+        readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=True
+    )
+    # Desktop input can trigger arbitrary app actions; repeating it can add effects.
+    write = ToolAnnotations(
+        readOnlyHint=False, destructiveHint=True, idempotentHint=False, openWorldHint=True
+    )
+    control = ToolAnnotations(
+        readOnlyHint=False, destructiveHint=False, idempotentHint=True, openWorldHint=False
+    )
 
     async def call(command, **args):
         try:
@@ -62,7 +70,7 @@ def create_mcp(remote, device_name):
         """Explicit takeover: interrupt input, release held keys/buttons, revoke ALL old sessions and observations, and give this client control. Leaves input PAUSED; capture a fresh screen then resume explicitly. Works even when device_busy or this client was revoked."""
         return await call("reset")
 
-    @server.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False))
+    @server.tool(annotations=control)
     async def release_control() -> CallToolResult:
         """Relinquish only this client's lease and stop its heartbeat. Does not revoke another client. An in-flight operation may finish; use reset_control to interrupt input."""
         return await call("release")
@@ -249,12 +257,16 @@ def create_mcp(remote, device_name):
             button=button,
         )
 
-    @server.tool(annotations=ToolAnnotations(readOnlyHint=False, destructiveHint=False))
+    @server.tool(annotations=control)
     async def stop_control() -> CallToolResult:
         """Pause input, interrupt active input, and release held keys/buttons. Screenshots remain available."""
         return await call("stop")
 
-    @server.tool(annotations=write)
+    @server.tool(
+        annotations=ToolAnnotations(
+            readOnlyHint=False, destructiveHint=True, idempotentHint=True, openWorldHint=True
+        )
+    )
     async def resume_control() -> CallToolResult:
         """Explicitly re-enable input after an emergency stop. Observe the screen before acting."""
         return await call("resume")

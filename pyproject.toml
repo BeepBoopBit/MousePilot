@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "mousepilot"
-version = "0.1.0b0"
+version = "0.1.1"
 description = "Observe and control Windows and macOS desktops through MCP or the command line"
 readme = "README.md"
 license = "MIT"

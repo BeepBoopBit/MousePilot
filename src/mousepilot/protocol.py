@@ -5,7 +5,7 @@ from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
 
 PROTOCOL_VERSION = 1
-VERSION = "0.1.0b0"
+VERSION = "0.1.1"
 Coordinate = Annotated[int, Field(strict=True, ge=-100000, le=100000)]
 Key = Literal[
     "enter",

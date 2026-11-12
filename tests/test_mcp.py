@@ -12,11 +12,34 @@ from mcp.client.stdio import stdio_client
 
 from mousepilot.client import Remote
 from mousepilot.controller import Controller
+from mousepilot.mcp_server import create_mcp
 from mousepilot.protocol import ControlError
 from mousepilot.server import make_server
 
 
 class MCPTests(unittest.TestCase):
+    def test_tool_annotations(self):
+        tools = asyncio.run(create_mcp(None, "test").list_tools())
+        self.assertEqual(len(tools), 24)
+        for tool in tools:
+            with self.subTest(tool=tool.name):
+                annotations = tool.model_dump(exclude_none=True).get("annotations", {})
+                for hint in (
+                    "readOnlyHint",
+                    "destructiveHint",
+                    "idempotentHint",
+                    "openWorldHint",
+                ):
+                    self.assertIs(type(annotations.get(hint)), bool, hint)
+                if annotations["readOnlyHint"]:
+                    self.assertFalse(annotations["destructiveHint"])
+                    self.assertTrue(annotations["idempotentHint"])
+                else:
+                    self.assertEqual(
+                        annotations["idempotentHint"],
+                        tool.name in {"release_control", "stop_control", "resume_control"},
+                    )
+
     def test_stdio_tools_images_actions_and_errors(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
